@@ -1673,6 +1673,12 @@ func (h *headIndexReader) SortedPostings(p index.Postings) index.Postings {
 }
 
 // Series returns the series for the given reference.
+func (h *headIndexReader) SeriesForTime(id uint64, s *index.SymbolizedLabels, chks *[]chunks.Meta, skipChunks bool, selectMint, selectMaxt int64) (ok bool, err error) {
+	// TODO(bwplotka): Do it.
+	return false, errors.New("not implemented")
+}
+
+// Series returns the series for the given reference.
 func (h *headIndexReader) Series(ref uint64, lbls *labels.Labels, chks *[]chunks.Meta) error {
 	s := h.head.series.getByID(ref)
 

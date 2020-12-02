@@ -1182,15 +1182,8 @@ func (m mockIndex) SortedPostings(p index.Postings) index.Postings {
 	return index.NewListPostings(ep)
 }
 
-func (m mockIndex) Series(ref uint64, lset *labels.Labels, chks *[]chunks.Meta) error {
-	s, ok := m.series[ref]
-	if !ok {
-		return storage.ErrNotFound
-	}
-	*lset = append((*lset)[:0], s.l...)
-	*chks = append((*chks)[:0], s.chunks...)
-
-	return nil
+func (m mockIndex) Series() index.SeriesSelector {
+	return nil // TODO
 }
 
 func (m mockIndex) LabelNames() ([]string, error) {
@@ -1982,7 +1975,7 @@ func (m mockMatcherIndex) SortedPostings(p index.Postings) index.Postings {
 	return index.EmptyPostings()
 }
 
-func (m mockMatcherIndex) Series(ref uint64, lset *labels.Labels, chks *[]chunks.Meta) error {
+func (m mockMatcherIndex) Series() index.SeriesSelector {
 	return nil
 }
 
